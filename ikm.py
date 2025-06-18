@@ -300,33 +300,32 @@ class TreeManager:
             print("Дерево построено успешно!")
         self.tree.printTree()
 
-    def run(self):
-        """Основной цикл программы"""
-        print("Построение бинарного дерева")
-        print("--------------------------")
+def main():
+    print("Построение бинарного дерева")
+    print("--------------------------")
+
+    manager = TreeManager()
+
+    while True:
+        print("\nМеню:")
         print("1. Ручной ввод")
         print("2. Загрузка из файла")
         print("3. Выход")
 
-        while True:
-            choice = input("\nВыберите действие (1-3): ").strip()
-            if choice == '1':
-                self.interactiveInput()
-                break
-            elif choice == '2':
-                filename = input("Введите имя файла: ").strip()
-                if self.fileInput(filename):
-                    break
-                self.line_num = 1
-            elif choice == '3':
-                print("Завершение работы")
-                return
-            else:
-                print("Некорректный выбор")
+        choice = input("Выберите действие (1-3): ").strip()
 
-        self.showResults()
-
+        if choice == '1':
+            manager.interactiveInput()
+            manager.showResults()
+        elif choice == '2':
+            filename = input("Введите имя файла: ").strip()
+            if manager.fileInput(filename):
+                manager.showResults()
+        elif choice == '3':
+            print("Завершение работы")
+            break
+        else:
+            print("Некорректный выбор, попробуйте снова")
 
 if __name__ == "__main__":
-    manager = TreeManager()
-    manager.run()
+    main()
